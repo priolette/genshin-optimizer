@@ -104,11 +104,13 @@ export function formulaText(
   }
   let name: ReactNode, sheet: string | undefined
   if (usedTag) {
-    name = (
-      <span>
-        <TagDisplay tag={usedTag} /> {displayVal}
-      </span>
-    )
+    name =
+      // Prevent the values that are misc/percent from being displayed
+      usedTag.q === '_' ? undefined : (
+        <span>
+          <TagDisplay tag={usedTag} /> {displayVal}
+        </span>
+      )
     sheet = undefined
   }
 

@@ -1,4 +1,4 @@
-import type { AbilityKey } from './character'
+import type { AbilityKey, ElementalTypeKey } from './character'
 import { allRelicMainStatKeys, allRelicSubStatKeys } from './relic'
 
 export const allRarityKeys = [5, 4, 3, 2, 1] as const
@@ -59,3 +59,17 @@ export const allPathKeys = [
   'Remembrance',
 ] as const
 export type PathKey = (typeof allPathKeys)[number]
+
+export const elementalData: Record<ElementalTypeKey, string> = {
+  fire: 'Fire',
+  ice: 'Ice',
+  imaginary: 'Imaginary',
+  lightning: 'Lightning',
+  physical: 'Physical',
+  quantum: 'Quantum',
+  wind: 'Wind',
+} as const
+
+export const statKeyTextMap: Partial<Record<string, string>> = {
+  // TODO: basically everything
+} as const

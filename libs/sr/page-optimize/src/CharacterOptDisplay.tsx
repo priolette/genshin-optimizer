@@ -7,6 +7,7 @@ import {
   CharacterCard,
   CharacterEditor,
   EquipRow,
+  StatHighlightContext,
 } from '@genshin-optimizer/sr/ui'
 import {
   Box,
@@ -29,6 +30,11 @@ const BOT_PX = 0
 const SECTION_SPACING_PX = 33
 const SectionNumContext = createContext(0)
 export function CharacterOptDisplay() {
+  const [statHighlight, setStatHighlight] = useState('')
+  const statHLContextObj = useMemo(
+    () => ({ statHighlight, setStatHighlight }),
+    [statHighlight, setStatHighlight]
+  )
   const sections: Array<[key: string, title: ReactNode, content: ReactNode]> =
     useMemo(() => {
       return [
@@ -49,15 +55,17 @@ export function CharacterOptDisplay() {
     }, [])
 
   return (
-    <SectionNumContext.Provider value={sections.length}>
-      <Stack gap={1}>
-        {sections.map(([key, title, content], i) => (
-          <Section key={key} title={title} index={i}>
-            {content}
-          </Section>
-        ))}
-      </Stack>
-    </SectionNumContext.Provider>
+    <StatHighlightContext.Provider value={statHLContextObj}>
+      <SectionNumContext.Provider value={sections.length}>
+        <Stack gap={1}>
+          {sections.map(([key, title, content], i) => (
+            <Section key={key} title={title} index={i}>
+              {content}
+            </Section>
+          ))}
+        </Stack>
+      </SectionNumContext.Provider>
+    </StatHighlightContext.Provider>
   )
 }
 function Section({

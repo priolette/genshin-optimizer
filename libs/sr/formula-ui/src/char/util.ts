@@ -24,3 +24,16 @@ export function getDmgType(tag: Tag) {
   if (damageType2) dmgType.push(damageType2 as DamageType)
   return dmgType
 }
+
+// TODO: translation
+export const damageTypeKeysMap: Record<DamageType, string> = {
+  basic: 'Basic',
+  break: 'Break',
+  dot: 'DoT',
+  elemental: 'Elemental',
+  followUp: 'Follow Up',
+  servantSkill: 'Memosprite Skill',
+  skill: 'Skill',
+  technique: 'Technique',
+  ult: 'Ultimate',
+}

@@ -1,7 +1,13 @@
 import { notEmpty, shallowCompareObj } from '@genshin-optimizer/common/util'
 import { correctConditionalValue } from '@genshin-optimizer/game-opt/engine'
 import type { CharacterKey } from '@genshin-optimizer/sr/consts'
-import type { Dst, Sheet, Src, Tag } from '@genshin-optimizer/sr/formula'
+import type {
+  DamageType,
+  Dst,
+  Sheet,
+  Src,
+  Tag,
+} from '@genshin-optimizer/sr/formula'
 import { getConditional, isMember } from '@genshin-optimizer/sr/formula'
 import { DataManager } from '../DataManager'
 import type { SroDatabase } from '../Database'
@@ -191,5 +197,17 @@ export function initialCharOpt(key: CharacterKey): CharOpt {
     conditionals: [],
     bonusStats: [],
     statConstraints: [],
+  }
+}
+
+export function applyDamageTypeToTag(
+  tag: Tag,
+  damageType1: DamageType | undefined | null,
+  damageType2: DamageType | undefined | null
+): Tag {
+  return {
+    ...tag,
+    ...(damageType1 ? { damageType1 } : {}),
+    ...(damageType2 ? { damageType2 } : {}),
   }
 }
